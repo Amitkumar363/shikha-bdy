@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Shikha 💖</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- PANDA -->
+    <div class="panda-container hidden" id="pandaContainer">
+        <img src="./ositoa.gif" alt="Cute Panda" class="panda" id="panda" />
+    </div>
+
+    <!-- ENVELOPE -->
+    <div class="envelope-scene" id="envelopeScene">
+        <div class="envelope" id="envelope">
+            <div class="envelope-top"></div>
+            <div class="envelope-body">
+                <p class="open-text">🎊 Tap to Open 🎊</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARD -->
+    <div class="card-container hidden" id="cardContainer">
+        <div class="card" id="card">
+            <div class="card-front" id="cakeFront">
+                <div class="cake">
+                    <div class="plate"></div>
+                    <div class="cake-layer layer1"></div>
+                    <div class="cake-layer layer2"></div>
+                    <div class="cake-layer layer3"></div>
+                    <div class="candles">
+                        <div class="candle" id="candle1"></div>
+                        <div class="candle" id="candle2"></div>
+                        <div class="candle" id="candle3"></div>
+                    </div>
+                </div>
+                <p class="blow-text">🎉 Tap the cake to blow the candles 🎉</p>
+            </div>
+
+            <div class="card-inside">
+                <h2>🎉 Happy Birthday Shikha 💖</h2>
+                <p>
+                    You’re the sparkle in every smile, the melody in every heart,<br />
+                    and today the world celebrates <em>you!</em><br />
+                    May your day be filled with pink-golden magic and endless joy.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CELEBRATION -->
+    <div class="celebration" id="celebration">
+        <canvas id="confetti"></canvas>
+        <div class="overlay"></div>
+        <div class="message" style="color: white;">
+            <h1>🎂 Happy Birthday Shikha 💕</h1>
+            <p>
+                Hey Buddy 🌸<br />
+                I just wanted to say thank you for everything you’ve done for me.<br />
+                You’ve always been there — through my smiles, my chaos, and everything in between.🌸<br />
+
+                Hopefully you’ll be standing by me like you always do.🤞<br />
+                Here’s to another year of smiles, dreams, and magical moments.
+            </p>
+            <button id="replayBtn">Close the Card ✨</button>
+        </div>
+    </div>
+
+    <!-- Custom Audio -->
+    <audio id="birthdayAudio" src="harmony.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

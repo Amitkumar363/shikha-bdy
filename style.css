@@ -1,0 +1,280 @@
+:root {
+  --pink: #f1568f;
+  --gold: #ffd166;
+  --light: #fff5f8;
+}
+
+/* BASIC */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: radial-gradient(circle at top right, var(--pink), var(--gold), white);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ENVELOPE */
+.envelope-scene {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+.envelope {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background: linear-gradient(135deg, var(--pink), var(--gold));
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+.envelope-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--pink));
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  transform-origin: top;
+  transition: transform 1s ease;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.envelope-body {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--pink), #ffbcd5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.open-text {
+  color: white;
+  font-weight: 600;
+  animation: pulse 1.5s infinite alternate;
+}
+@keyframes pulse {
+  from { opacity: 0.6; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.1); }
+}
+.envelope.open .envelope-top { transform: rotateX(180deg); }
+.envelope.open { transform: translateY(-20px); }
+
+/* CARD */
+.card-container { perspective: 1200px; }
+.card {
+  width: 360px;
+  height: 250px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.2s ease-in-out;
+  cursor: pointer;
+  animation: bounceIn 0.8s ease forwards;
+}
+.card-front, .card-inside {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  border: 3px solid var(--gold);
+  background: linear-gradient(135deg, #ffd6e0, #fff0f5);
+  box-shadow: 0 0 40px rgba(255, 119, 169, 0.3);
+  animation: glow 2s infinite alternate;
+}
+.card-inside {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, var(--gold), #ffeef4);
+}
+.card.open { transform: rotateY(180deg); }
+@keyframes bounceIn {
+  0% { transform: translateY(-50px) scale(0.5); }
+  60% { transform: translateY(10px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes glow {
+  0% { box-shadow: 0 0 10px var(--pink); }
+  100% { box-shadow: 0 0 30px var(--gold); }
+}
+
+/* CAKE */
+.cake {
+  position: relative;
+  width: 160px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+.plate {
+  width: 180px;
+  height: 10px;
+  background: #ffe0b3;
+  border-radius: 50%;
+  margin-bottom: -5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.cake-layer {
+  width: 140px;
+  height: 25px;
+  border-radius: 6px;
+  margin: 2px 0;
+}
+.layer1 { background: #ffb3c6; }
+.layer2 { background: #ff90b0; }
+.layer3 { background: #ff6f99; }
+.candles {
+  display: flex;
+  gap: 10px;
+  margin-top: -10px;
+}
+.candle {
+  width: 6px;
+  height: 25px;
+  background: #ffe066;
+  border-radius: 2px;
+  position: relative;
+}
+.candle::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 10px;
+  background: orange;
+  border-radius: 50%;
+  box-shadow: 0 0 6px yellow;
+  animation: flame 0.5s infinite alternate;
+}
+.candle.blow::after { display: none; }
+@keyframes flame {
+  0% { transform: translateX(-50%) scaleY(1); opacity: 1; }
+  100% { transform: translateX(-50%) scaleY(0.5); opacity: 0.6; }
+}
+.blow-text { margin-top: 10px; color: #5a3b3b; font-weight: 600; }
+
+/* CELEBRATION */
+.celebration {
+  position: fixed;
+  inset: 0;
+  background: url("./3.jpg") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+  overflow: hidden;
+}
+.celebration.show {
+  opacity: 1;
+  pointer-events: all;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  /* background: rgba(255, 255, 255, 0.75); */
+  backdrop-filter: blur(1px);
+  z-index: 1;
+}
+.message {
+  z-index: 2;
+  max-width: 90%;
+  color: #5a3b3b;
+  padding: 20px;
+}
+.message h1 {
+  font-size: 2rem;
+  background: linear-gradient(90deg, var(--pink), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: float 3s infinite ease-in-out;
+  margin-bottom: 20px;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.message p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+#replayBtn {
+  margin-top: 20px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--pink), var(--gold));
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+#replayBtn:hover { transform: scale(1.05); }
+canvas#confetti {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* PANDA ANIMATION */
+.panda-container {
+  position: absolute;
+  bottom: 10px;
+  left: -200px;
+  z-index: 10;
+  transition: left 1.5s ease-in-out;
+}
+.panda-container.show {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.panda {
+  width: 130px;
+  animation: pandaWave 8s infinite ease-in-out;
+}
+@keyframes pandaWave {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(5deg); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .card {
+    width: 300px;
+    height: 200px;
+  }
+  .message h1 { font-size: 1.6rem; }
+  .message p { font-size: 1rem; }
+}
+@media (max-width: 480px) {
+  .envelope { width: 240px; height: 160px; }
+  .card { width: 270px; height: 180px; }
+  .cake { width: 120px; }
+  .cake-layer { width: 100px; height: 18px; }
+  .message h1 { font-size: 1.4rem; }
+  .message p { font-size: 0.95rem; }
+}
+.hidden { display: none; }
